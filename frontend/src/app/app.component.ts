@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent  implements OnInit{
   title = 'Home';
   email: string = "";
   password: string= "";
@@ -15,5 +15,8 @@ export class AppComponent {
   onSubmit() {
     console.log(this.email);
     console.log(this.password);
+  }
+  ngOnInit() {
+    console.log('in ngOninit of AppComponent');
   }
 }

@@ -10,7 +10,7 @@ export class AuthComponent implements OnInit {
     title = "Lodin";
     email: string = "";
     password: string= "";
-
+    headers: any;
     constructor(private _authService: AuthService) { }
 
     logIn() {
@@ -20,6 +20,7 @@ export class AuthComponent implements OnInit {
         );
     }
     ngOnInit() {
+      console.log('in ngOnInit of Auth');
     }
 
 }
