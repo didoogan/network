@@ -4,24 +4,23 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
+// import { AuthComponent } from './auth/auth.component';
 import {RouterModule} from "@angular/router";
-import {AuthService} from "./auth/auth.service";
+import {AuthModule} from "./auth/auth.module";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AuthComponent
+    AppComponent
   ],
   imports: [
+    AuthModule,
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: "login", component: AuthComponent }
+      { path: "auth",  loadChildren: './auth/auth.module#AuthModule'}
     ])
   ],
-  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
