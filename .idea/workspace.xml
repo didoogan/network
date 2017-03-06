@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3a7b91b-2cd5-4627-b46e-ee55b5f530e5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/src/app/auth/auth.module.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_auth/api/serializers.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_auth/api/urls.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_auth/api/views.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_auth/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/app/auth/auth.component.ts" afterPath="$PROJECT_DIR$/frontend/src/app/auth/auth.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/app/auth/auth.service.ts" afterPath="$PROJECT_DIR$/frontend/src/app/auth/auth.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my_auth/models.py" afterPath="$PROJECT_DIR$/my_auth/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/network/settings.py" afterPath="$PROJECT_DIR$/network/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/network/urls.py" afterPath="$PROJECT_DIR$/network/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/post/models.py" afterPath="$PROJECT_DIR$/post/models.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -143,8 +131,10 @@
         <entry file="file://$PROJECT_DIR$/post/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="36">
-              <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-              <folding />
+              <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1388,8 +1378,10 @@
     <entry file="file://$PROJECT_DIR$/post/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
-          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-          <folding />
+          <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
