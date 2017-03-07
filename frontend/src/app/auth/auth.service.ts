@@ -5,13 +5,16 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import {AuthHttp} from "angular2-jwt";
+import {GeneralLib} from "../lib";
 
 
 @Injectable()
 export class AuthService {
-    private _apiUrl = 'http://127.0.0.1:8000';
+    private _apiUrl;
 
-    constructor(private _http: Http, public authHttp: AuthHttp) {}
+    constructor(private _http: Http, public authHttp: AuthHttp) {
+      this._apiUrl = GeneralLib.serverUrl;
+    }
 
     logIn(email, password): any {
         return this._http.post(`${this._apiUrl}/api-token-auth/`, {email, password})
