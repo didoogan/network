@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'my_auth',
     'rest_framework',
+    'post',
+    'like',
 ]
 
 MIDDLEWARE = [
