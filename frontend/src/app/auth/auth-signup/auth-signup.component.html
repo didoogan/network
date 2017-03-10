@@ -1,0 +1,10 @@
+  <div class="wrapper">
+    <form class="form-signin" (ngSubmit)="signUp()">
+      <h2 class="form-signin-heading">Please Sign up</h2>
+      <input [(ngModel)]="email" type="email" class="form-control custom_class" name="username" placeholder="Email Address" required="" autofocus="" />
+      <input [(ngModel)]="password1" type="password" class="form-control custom_class" name="password1" placeholder="Password" minlength="8" required=""/>
+      <input [(ngModel)]="password2" type="password" class="form-control custom_class" name="password2" placeholder="Confitm password" minlength="8" required=""/>
+        <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    </form>
+  </div>

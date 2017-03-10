@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import datetime
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -40,7 +42,6 @@ INSTALLED_APPS = [
     'my_auth',
     'rest_framework',
     'post',
-    'like',
 ]
 
 MIDDLEWARE = [
@@ -152,6 +153,7 @@ JWT_AUTH = {
     ####### CUSTOM VALUES ##########
     'JWT_VERIFY_EXPIRATION': False,
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=300),
 }
 
 
@@ -174,3 +176,8 @@ AUTH_USER_MODEL='my_auth.MyUser'
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+try:
+    from .local_settings import *
+except ImportError as e:
+    pass

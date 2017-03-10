@@ -1,7 +1,9 @@
-from django.conf.urls import url
-from . import views
+from rest_framework.routers import DefaultRouter
+
+from .views import PostViewSet
 
 
-urlpatterns = [
-    url(r'^post_list_create/$', views.PostListCreateView.as_view()),
-]
+router = DefaultRouter()
+router.register(r'posts', PostViewSet)
+
+urlpatterns = router.urls

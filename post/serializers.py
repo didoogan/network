@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 from my_auth.api.serializers import MyUserSerializer
 from post.models import Post
-from like.models import Like
+from .models import Like
 
 
 class PostSerializer(serializers.ModelSerializer):

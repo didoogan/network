@@ -22,6 +22,12 @@ export class AuthService {
             .do(data => console.log(data))
             .catch(this.handleError);
     }
+    signUp(email, password): any {
+        return this._http.post(`${this._apiUrl}/my_auth/api/signup/`, {email, password})
+            .map((response: Response) => response.json())
+            .do(data => console.log(data))
+            .catch(this.handleError);
+    }
 
     getUsers(): any {
         return this.authHttp.get(`${this._apiUrl}/my_auth/api/my_user_list/`)

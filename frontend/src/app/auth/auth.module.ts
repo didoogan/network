@@ -8,6 +8,7 @@ import {AuthService} from "./auth.service";
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import { AuthListComponent } from './auth-list/auth-list.component';
+import { AuthSignupComponent } from './auth-signup/auth-signup.component';
 
 function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig(), http, options);
@@ -19,10 +20,11 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
     CommonModule,
     RouterModule.forChild([
       { path: "login", component: AuthComponent },
+      { path: "signup", component: AuthSignupComponent },
       {path: "user-list", component: AuthListComponent}
     ])
   ],
-  declarations: [AuthComponent, AuthListComponent],
+  declarations: [AuthComponent, AuthListComponent, AuthSignupComponent],
   providers: [
     {
       provide: AuthHttp,
