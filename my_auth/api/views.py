@@ -1,5 +1,6 @@
 import json
 import requests
+import clearbit
 
 from rest_framework import generics
 from rest_framework import status
@@ -38,6 +39,8 @@ class SignUp(APIView):
                                                              email,
                                                              settings.HUNTER_API_KEY))
         status = result.json()['data']['result']
+
+        clearbit.key = settings.CLEARBIT_SECRET_KEY
 
 
 
