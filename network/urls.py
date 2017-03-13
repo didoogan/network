@@ -12,4 +12,9 @@ urlpatterns = [
     url(r'^api-token-verify/', verify_jwt_token),
     url(r'^my_auth/', include('my_auth.urls')),
     url(r'^post/', include('post.urls')),
+    url(r'^django-rq/', include('django_rq.urls')),
 ]
+
+# urlpatterns += patterns('',
+#     url(r'^django-rq/', include('django_rq.urls')),
+# )

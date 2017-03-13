@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # other apps
+    "django_rq",
+    # custom apps
     'my_auth',
     'rest_framework',
     'post',
@@ -58,6 +61,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'network.urls'
 CORS_ORIGIN_ALLOW_ALL = True
+
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0
+    }
+}
 
 TEMPLATES = [
     {

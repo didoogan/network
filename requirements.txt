@@ -1,8 +1,10 @@
 appdirs==1.4.2
+clearbit==0.1.5
 click==6.7
 colorama==0.3.7
 Django==1.10.6
 django-cors-headers==2.0.2
+django-rq==0.9.4
 djangorestframework==3.5.4
 djangorestframework-jwt==1.9.0
 docopt==0.6.2
@@ -19,7 +21,9 @@ Pygments==2.2.0
 PyJWT==1.4.2
 pyparsing==2.1.10
 pytz==2016.10
+redis==2.10.5
 requests==2.13.0
+rq==0.7.1
 setupfiles==0.0.0
 six==1.10.0
 type==0.0.1
