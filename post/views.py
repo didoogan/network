@@ -15,7 +15,7 @@ class PostViewSet(viewsets.ModelViewSet):
         user = self.request.user
         serializer.save(user=user)
 
-    @detail_route(methods=['get'])
+    @detail_route(methods=['post'])
     def like(self, request, pk=None):
         user = request.user
         post = self.get_object()
@@ -24,7 +24,7 @@ class PostViewSet(viewsets.ModelViewSet):
         like.save()
         return Response({'status': 'Performed'}, status=status.HTTP_201_CREATED)
 
-    @detail_route(methods=['get'])
+    @detail_route(methods=['post'])
     def dislike(self, request, pk=None):
         user = request.user
         post = self.get_object()

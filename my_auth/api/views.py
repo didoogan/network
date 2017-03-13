@@ -1,6 +1,5 @@
 import requests
-import clearbit
-import django_rq
+
 
 from rest_framework import generics
 from rest_framework.response import Response
@@ -11,12 +10,12 @@ from rest_framework import status
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
-from django_rq import job
-
 from my_auth.api.serializers import MyUserSerializer
 from my_auth.models import MyUser
 
 from validate_email import validate_email
+
+from custom_lib.rq_jobs import get_user_info
 
 
 class MyUserListView(generics.ListAPIView):
@@ -53,15 +52,6 @@ class SignUp(APIView):
         u.save()
         get_user_info.delay(u)
         return Response({'message': 'Success'}, status=status.HTTP_201_CREATED)
-
-
-@job
-def get_user_info(user):
-    print('in get_user_info()')
-    clearbit.key = settings.CLEARBIT_SECRET_KEY
-    person = clearbit.Enrichment.find(email=user.email, stream=True)
-    if person is not None:
-        print("Name: " + person['name']['fullName'])
 
 
 
