@@ -2,7 +2,7 @@ from django.conf import settings
 from django_rq import job
 
 import clearbit
-
+from django_rq import job
 
 
 @job

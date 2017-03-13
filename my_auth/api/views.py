@@ -47,10 +47,10 @@ class SignUp(APIView):
         if result_status != 'deliverable':
             return Response({'error': 'Unappropriat email'}, status=status.HTTP_406_NOT_ACCEPTABLE)
         CustomUser = get_user_model()
-        u = CustomUser.objects.create(email=email)
-        u.set_password(psw)
-        u.save()
-        get_user_info.delay(u)
+        # u = CustomUser.objects.create(email=email)
+        # u.set_password(psw)
+        # u.save()
+        CustomUser.objects.create_user(email=email, password=psw)
         return Response({'message': 'Success'}, status=status.HTTP_201_CREATED)
 
 
