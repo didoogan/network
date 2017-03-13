@@ -11,8 +11,8 @@ class Post(models.Model):
 
 
 class Like(models.Model):
-    like = models.IntegerField(default=0)
-    unlike = models.IntegerField(default=0)
+    like = models.BooleanField(default=False)
+    dislike = models.BooleanField(default=False)
     post = models.ForeignKey(Post)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
 

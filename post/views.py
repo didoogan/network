@@ -20,17 +20,17 @@ class PostViewSet(viewsets.ModelViewSet):
         user = request.user
         post = self.get_object()
         like, created = Like.objects.get_or_create(post=post, user=user)
-        like.like = 0 if like.like else 1
+        like.like = False if like.like else True
         like.save()
         return Response({'status': 'Performed'}, status=status.HTTP_201_CREATED)
 
     @detail_route(methods=['get'])
-    def unlike(self, request, pk=None):
+    def dislike(self, request, pk=None):
         user = request.user
         post = self.get_object()
-        unlike, created = Like.objects.get_or_create(post=post, user=user)
-        unlike.unlike = 0 if unlike.unlike else 1
-        unlike.save()
+        dislike, created = Like.objects.get_or_create(post=post, user=user)
+        dislike.dislike = False if dislike.dislike else True
+        dislike.save()
         return Response({'status': 'Performed'}, status=status.HTTP_201_CREATED)
 
 
