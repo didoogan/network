@@ -1,5 +1,6 @@
+from django.db.models import Count
 from rest_framework import viewsets
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -32,5 +33,11 @@ class PostViewSet(viewsets.ModelViewSet):
         dislike.dislike = False if dislike.dislike else True
         dislike.save()
         return Response({'status': 'Performed'}, status=status.HTTP_201_CREATED)
+
+    @detail_route(methods=['post'])
+    def get_max_posts_user(self, request, pk=None):
+        post = Post.objects.all().annotate(num_likes=Count('likes')).order_by('num_likes').last()
+
+
 
 

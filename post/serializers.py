@@ -24,7 +24,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     def get_dislikes(self, obj):
         # unlikes = Like.objects.filter(post=obj).aggregate(Sum('unlike'))['unlike__sum']
-        unlikes = Like.objects.filter(post=obj, dislik123e=True).count()
+        unlikes = Like.objects.filter(post=obj, dislike=True).count()
         if not unlikes:
             unlikes = 0
         return unlikes
