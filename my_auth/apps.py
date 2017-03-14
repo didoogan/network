@@ -6,4 +6,4 @@ class MyAuthConfig(AppConfig):
     verbose_name = 'My_auth Application'
 
     def ready(self):
-        import my_auth.signals
+        import my_auth.recivers
