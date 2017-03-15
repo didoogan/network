@@ -1,0 +1,19 @@
+.has-wrote {
+  font-weight: 900;
+}
+.post-text {
+  font-style: italic;
+}
+.post-dislike {
+  margin-left: 10px;
+  color: red;
+  cursor: pointer;
+}
+.post-like {
+  margin-left: 135px;
+  color: green;
+  cursor: pointer;
+}
+.sympathy {
+  margin-bottom: 15px;
+}

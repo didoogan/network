@@ -10,9 +10,9 @@ import {FormsModule} from "@angular/forms";
 import { AuthListComponent } from './auth-list/auth-list.component';
 import { AuthSignupComponent } from './auth-signup/auth-signup.component';
 
-function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp(new AuthConfig(), http, options);
-}
+// function authHttpServiceFactory(http: Http, options: RequestOptions) {
+//   return new AuthHttp(new AuthConfig(), http, options);
+// }
 
 @NgModule({
   imports: [
@@ -28,7 +28,10 @@ function authHttpServiceFactory(http: Http, options: RequestOptions) {
   providers: [
     {
       provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
+      useFactory:
+        (http: Http, options: RequestOptions) => {
+          return new AuthHttp(new AuthConfig(), http, options);
+        },
       deps: [Http, RequestOptions]
     },
     AuthService

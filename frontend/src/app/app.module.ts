@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 // import { AuthComponent } from './auth/auth.component';
 import {RouterModule} from "@angular/router";
 import {AuthModule} from "./auth/auth.module";
+import {PostModule} from "./post/post.module";
 
 @NgModule({
   declarations: [
@@ -14,11 +15,14 @@ import {AuthModule} from "./auth/auth.module";
   ],
   imports: [
     AuthModule,
+    PostModule,
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: "auth",  loadChildren: './auth/auth.module#AuthModule'}
+      { path: "auth",  loadChildren: './auth/auth.module#AuthModule'},
+      { path: "post",  loadChildren: './post/post.module#PostModule'},
+      { path: "",  redirectTo: '/post/post-list', pathMatch: 'full'}
     ])
   ],
   bootstrap: [AppComponent]

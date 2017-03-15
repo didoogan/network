@@ -7,8 +7,10 @@ class Bot:
     serverAPI = 'http://127.0.0.1:8000'
     signupURL = '/my_auth/api/signup/'
     signinURL = '/api-token-auth/'
+    logoutURL = '/api-auth/logout/'
     postURL = '/post/posts/'
-    get_max_post_user = '/post/posts/get_max_posts_user/'
+    get_max_post_userURL = '/post/posts/get_max_posts_user/'
+    get_liking_postsURL = '/post/posts/get_liking_posts/'
 
     def __init__(self, number_of_users, max_posts_per_users, max_likes_per_users, email, password):
         self.number_of_users = number_of_users
@@ -48,13 +50,35 @@ class Bot:
 
     def make_likes(self):
         response = requests.get(
-            '{}{}'.format(self.serverAPI, self.get_max_post_user),
+            '{}{}'.format(self.serverAPI, self.get_max_post_userURL),
             headers=self.auth_header
         )
         if response.status_code == 200:
             self.email = response.json()['email']
-            if self._signin():
-                pass
+            response = requests.get(
+                    '{}{}'.format(self.serverAPI, self.logoutURL),
+                    headers=self.auth_header
+            )
+            if response.status_code == 200:
+                if self._signin():
+                    response = requests.get(
+                        '{}{}'.format(self.serverAPI, self.get_liking_postsURL),
+                        headers=self.auth_header
+                    )
+                    if response.status_code == 200:
+                        posts = response.json()['posts']
+                        posts_id_list = []
+                        for post in posts:
+                            posts_id_list.append(post['id'])
+                        likes_count = len(posts_id_list)
+                        if likes_count > self.max_likes_per_users:
+                            likes_count = self.max_likes_per_users
+                        for i in range(0, likes_count):
+                            post_id = posts_id_list.pop()
+                            requests.post(
+                                '{}/post/posts/{}/like/'.format(self.serverAPI, post_id),
+                                headers=self.auth_header
+                            )
 
     def _signin(self):
         response = requests.post(
@@ -69,7 +93,13 @@ class Bot:
             return False
 
 
-bot = Bot(1, 2, 3, 'tech.press@nokia.com', '11111111')
-bot.run()
+# bot = Bot(1, 5, 3, 'csano@microsoft.com', '11111111')
+# bot.run()
+print('stop')
+result = []
+with open('config.txt') as f:
+    for line in f:
+        resulp.append(line.split()[0]
+
 
 

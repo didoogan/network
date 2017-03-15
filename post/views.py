@@ -1,6 +1,7 @@
 import json
 
 from django.db.models import Count, Case, When
+from django.db.models import Q
 from rest_framework import viewsets
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
@@ -25,7 +26,8 @@ class PostViewSet(viewsets.ModelViewSet):
         like, created = Like.objects.get_or_create(post=post, user=user)
         like.like = False if like.like else True
         like.save()
-        return Response({'status': 'Performed'}, status=status.HTTP_201_CREATED)
+        serializer = PostSerializer(post)
+        return Response({'post': serializer.data}, status=status.HTTP_201_CREATED)
 
     @detail_route(methods=['post'])
     def dislike(self, request, pk=None):
@@ -34,7 +36,8 @@ class PostViewSet(viewsets.ModelViewSet):
         dislike, created = Like.objects.get_or_create(post=post, user=user)
         dislike.dislike = False if dislike.dislike else True
         dislike.save()
-        return Response({'status': 'Performed'}, status=status.HTTP_201_CREATED)
+        serializer = PostSerializer(post)
+        return Response({'post': serializer.data}, status=status.HTTP_201_CREATED)
 
     @list_route(methods=['get'])
     def get_max_posts_user(self, request, pk=None):
@@ -42,12 +45,11 @@ class PostViewSet(viewsets.ModelViewSet):
         return Response({'email': post.user.email}, status=status.HTTP_200_OK)
 
     @list_route(methods=['get'])
-    def get_liking_post(self, request, pk=None):
-        posts = Post.objects.all().annotate(num_likes=Count(
-            Case(When(like__like=True, then=1)
-        ))).exclude(num_likes__gt=0).exclude(user=request.user)
-        serializer = PostSerializer(data=posts, many=True)
-        return Response({'posts': posts}, status=status.HTTP_200_OK)
+    def get_liking_posts(self, request, pk=None):
+        p1 = Post.objects.filter(like__like=True)
+        posts = Post.objects.filter(~Q(id__in=p1)).exclude(user=request.user)
+        serializer = PostSerializer(posts, many=True)
+        return Response({'posts': serializer.data}, status=status.HTTP_200_OK)
 
 
 

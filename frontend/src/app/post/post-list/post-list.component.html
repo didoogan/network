@@ -1,0 +1,14 @@
+<div class="container">
+    <div *ngFor="let post of postList">
+        <div class="has-wrote">{{ post.user.email }} has wrote: </div>
+        <div class="post-text">{{ post.text }}</div>
+        <div class="sympathy">
+            <span class="post-like glyphicon glyphicon-thumbs-up" aria-hidden="true"
+                (click)="makeSympaty(post, true)">
+            </span> {{ post.likes }}
+            <span class="post-dislike glyphicon glyphicon-thumbs-down" aria-hidden="true"
+                  (click)="makeSympaty(post, false)">
+            </span> {{ post.dislikes }}
+        </div>
+    </div>
+</div>
