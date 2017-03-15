@@ -1,3 +1,5 @@
-2 # number_of_users
-4 # max_posts_per_users
-3 # max_likes_per_users
+2                       # number_of_users
+4                       # max_posts_per_users
+3                       # max_likes_per_users
+email@gmail.com         # email
+11111111                # password

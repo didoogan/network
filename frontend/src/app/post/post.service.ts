@@ -15,8 +15,8 @@ export class PostService {
     this._apiUrl = GeneralLib.serverUrl;
   }
 
-  getPosts(): any {
-    return this._authHttp.get(`${this._apiUrl}/post/posts/`)
+  getPosts(url): any {
+    return this._authHttp.get(url)
       .map((response: Response) => response.json() )
       .do(data => console.log(data) )
       .catch(this.handleError);

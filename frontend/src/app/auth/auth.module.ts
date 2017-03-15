@@ -32,6 +32,7 @@ import { AuthSignupComponent } from './auth-signup/auth-signup.component';
         (http: Http, options: RequestOptions) => {
           return new AuthHttp(new AuthConfig(), http, options);
         },
+      // useFactory: authHttpServiceFactory,
       deps: [Http, RequestOptions]
     },
     AuthService

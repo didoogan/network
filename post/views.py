@@ -7,6 +7,7 @@ from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
 from rest_framework import status
 
+from paginators.paginators import PostPagination
 from post.models import Post, Like
 from post.serializers import PostSerializer
 
@@ -14,6 +15,7 @@ from post.serializers import PostSerializer
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
+    pagination_class = PostPagination
 
     def perform_create(self, serializer):
         user = self.request.user

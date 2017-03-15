@@ -93,13 +93,24 @@ class Bot:
             return False
 
 
-# bot = Bot(1, 5, 3, 'csano@microsoft.com', '11111111')
-# bot.run()
-print('stop')
-result = []
-with open('config.txt') as f:
-    for line in f:
-        resulp.append(line.split()[0]
+def read_config(file):
+    with open(file) as f:
+        context = f.readlines()
+    result = [l for l in context]
+    return result
+
+result = read_config('config.txt')
+
+number_of_users = int(result[0].split()[0])
+max_posts_per_users = int(result[1].split()[0])
+max_likes_per_users = int(result[2].split()[0])
+email = result[3].split()[0]
+password = result[4].split()[0]
+
+bot = Bot(number_of_users, max_posts_per_users, max_likes_per_users, email, password)
+bot.run()
+
+
 
 
 
