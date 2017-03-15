@@ -8,6 +8,7 @@ class Bot:
     signupURL = '/my_auth/api/signup/'
     signinURL = '/api-token-auth/'
     postURL = '/post/posts/'
+    get_max_post_user = '/post/posts/get_max_posts_user/'
 
     def __init__(self, number_of_users, max_posts_per_users, max_likes_per_users, email, password):
         self.number_of_users = number_of_users
@@ -30,13 +31,7 @@ class Bot:
             self.signin()
 
     def signin(self):
-        response = requests.post(
-            "{}{}".format(self.serverAPI, self.signinURL),
-            data={'email': self.email, 'password': self.password}
-        )
-        if response.status_code == 200:
-            self.token = response.json()['token']
-            self.auth_header = {'Authorization': 'Bearer {}'.format(self.token)}
+        if self._signin():
             self.create_posts(self.max_posts_per_users)
 
     def create_posts(self, max_posts_per_users):
@@ -52,12 +47,29 @@ class Bot:
                 self.make_likes()
 
     def make_likes(self):
-        pass
+        response = requests.get(
+            '{}{}'.format(self.serverAPI, self.get_max_post_user),
+            headers=self.auth_header
+        )
+        if response.status_code == 200:
+            self.email = response.json()['email']
+            if self._signin():
+                pass
+
+    def _signin(self):
+        response = requests.post(
+            "{}{}".format(self.serverAPI, self.signinURL),
+            data={'email': self.email, 'password': self.password}
+        )
+        if response.status_code == 200:
+            self.token = response.json()['token']
+            self.auth_header = {'Authorization': 'Bearer {}'.format(self.token)}
+            return True
+        else:
+            return False
 
 
-
-
-bot = Bot(1, 2, 3, 'andrew.begel@microsoft.com', '11111111')
+bot = Bot(1, 2, 3, 'tech.press@nokia.com', '11111111')
 bot.run()
 
 
