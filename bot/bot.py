@@ -114,10 +114,12 @@ emails = [i['value'] for i in result.json()['data']['emails']]
 
 if number_of_users > len(emails):
     number_of_users = len(emails)
-for i in range(0, number_of_users):
-    email = emails.pop()
-    bot = Bot(number_of_users, max_posts_per_users, max_likes_per_users, email, password)
-    bot.run()
+
+if __name__ =='__main__':
+    for i in range(0, number_of_users):
+        email = emails.pop()
+        bot = Bot(number_of_users, max_posts_per_users, max_likes_per_users, email, password)
+        bot.run()
 
 
 
