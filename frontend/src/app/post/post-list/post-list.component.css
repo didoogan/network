@@ -17,3 +17,6 @@
 .sympathy {
   margin-bottom: 15px;
 }
+.paginator-pointer{
+  cursor: pointer;
+}

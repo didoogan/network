@@ -12,6 +12,8 @@ export class PostListComponent implements OnInit {
   postList = [];
   getPostURL = "";
   _apiUrl = "";
+  nextPage = null;
+  previousPage = null;
 
   constructor(private _postService: PostService, private _route: Router) {
     this._apiUrl = GeneralLib.serverUrl;
@@ -28,9 +30,14 @@ export class PostListComponent implements OnInit {
       error => console.log(error)
     )
   }
-  getPosts() {
-    this._postService.getPosts(this.getPostURL).subscribe(
-      response => this.postList = response.results,
+  getPosts(url=`${this._apiUrl}/post/posts/`) {
+    this._postService.getPosts(url).subscribe(
+      response => {
+        this.postList = response.results;
+        this.nextPage = response.next;
+        this.previousPage = response.previous;
+      },
+
       error => {
         console.log(error);
         this._route.navigate(['/login']);

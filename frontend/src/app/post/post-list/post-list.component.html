@@ -11,4 +11,10 @@
             </span> {{ post.dislikes }}
         </div>
     </div>
+    <span *ngIf="previousPage">
+        <a class="paginator-pointer" (click)="getPosts(url=previousPage)"><< previous</a>
+    </span>
+    <span *ngIf="nextPage">
+        <a class="paginator-pointer" (click)="getPosts(url=nextPage)">next >></a>
+    </span>
 </div>

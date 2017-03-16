@@ -2,6 +2,8 @@ import random
 
 import requests
 
+from network.local_settings import HUNTER_DOMAIN_SEARCH, HUNTER_API_KEY
+
 
 class Bot:
     serverAPI = 'http://127.0.0.1:8000'
@@ -104,11 +106,18 @@ result = read_config('config.txt')
 number_of_users = int(result[0].split()[0])
 max_posts_per_users = int(result[1].split()[0])
 max_likes_per_users = int(result[2].split()[0])
-email = result[3].split()[0]
+url = result[3].split()[0]
 password = result[4].split()[0]
 
-bot = Bot(number_of_users, max_posts_per_users, max_likes_per_users, email, password)
-bot.run()
+result = requests.get('{}domain={}&api_key={}'.format(HUNTER_DOMAIN_SEARCH, url, HUNTER_API_KEY))
+emails = [i['value'] for i in result.json()['data']['emails']]
+
+if number_of_users > len(emails):
+    number_of_users = len(emails)
+for i in range(0, number_of_users):
+    email = emails.pop()
+    bot = Bot(number_of_users, max_posts_per_users, max_likes_per_users, email, password)
+    bot.run()
 
 
 
