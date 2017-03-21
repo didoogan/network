@@ -1,21 +1,15 @@
 import requests
-
-
-from rest_framework import generics
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
-from rest_framework import status
-
 from django.conf import settings
 from django.contrib.auth import get_user_model
-
-from my_auth.api.serializers import MyUserSerializer
-from my_auth.models import MyUser
-
+from rest_framework import generics
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from validate_email import validate_email
 
-from custom_lib.rq_jobs import get_user_info
+from api.my_auth.serializers import MyUserSerializer
+from my_auth.models import MyUser
 
 
 class MyUserListView(generics.ListAPIView):
@@ -45,7 +39,7 @@ class SignUp(APIView):
             return Response({'error': 'API error'}, status=status.HTTP_406_NOT_ACCEPTABLE)
         result_status = result.json()['data']['result']
         if result_status != 'deliverable':
-            return Response({'error': 'Unappropriat email'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response({'error': 'Unappropriate email'}, status=status.HTTP_406_NOT_ACCEPTABLE)
         CustomUser = get_user_model()
         CustomUser.objects.create_user(email=email, password=psw)
         return Response({'message': 'Success'}, status=status.HTTP_201_CREATED)

@@ -23,7 +23,7 @@ export class PostService {
   }
   makeSympathy(id: number, sympathy: Boolean): any {
     let symp = (sympathy)? "like": "dislike";
-    return this._authHttp.post(`${this._apiUrl}/post/posts/${id}/${symp}/`, {})
+    return this._authHttp.post(`${this._apiUrl}/post/api/${id}/${symp}/`, {})
       .map((response: Response) => response.json() )
       .do(data => console.log(data) )
       .catch(this.handleError);

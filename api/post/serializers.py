@@ -1,9 +1,8 @@
-from django.db.models import Sum
 from rest_framework import serializers
 
-from my_auth.api.serializers import MyUserSerializer
+from api.my_auth.serializers import MyUserSerializer
 from post.models import Post
-from .models import Like
+from post.models import Like
 
 
 class PostSerializer(serializers.ModelSerializer):

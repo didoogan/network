@@ -17,7 +17,7 @@ export class PostListComponent implements OnInit {
 
   constructor(private _postService: PostService, private _route: Router) {
     this._apiUrl = GeneralLib.serverUrl;
-    this.getPostURL = `${this._apiUrl}/post/posts/`;
+    this.getPostURL = `${this._apiUrl}/post/api/`;
     this.getPosts();
   }
 
@@ -30,7 +30,8 @@ export class PostListComponent implements OnInit {
       error => console.log(error)
     )
   }
-  getPosts(url=`${this._apiUrl}/post/posts/`) {
+  getPosts(url=`${this._apiUrl}/post/api/`) {
+    console.log(url);
     this._postService.getPosts(url).subscribe(
       response => {
         this.postList = response.results;

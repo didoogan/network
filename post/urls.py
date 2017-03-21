@@ -1,9 +1,6 @@
-from rest_framework.routers import DefaultRouter
-
-from .views import PostViewSet
+from django.conf.urls import url, include
 
 
-router = DefaultRouter()
-router.register(r'posts', PostViewSet)
-
-urlpatterns = router.urls
+urlpatterns = [
+    url(r'^api/', include('api.post.urls', namespace='post_api')),
+]
